@@ -239,5 +239,5 @@ class CompanyController extends Controller
         } catch (\Exception $e) {
             echo 'Error: ' . $e->getMessage();
         }
-    }   
+    }
 }

@@ -40,7 +40,7 @@ class EmployeeController extends Controller
                 return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                        return '<button onclick="openform('.htmlspecialchars(json_encode($row)).')">Edit</button> <button onclick="deletefun('.$row->id.')">Delete</button>';
+                        return '<button onclick="openform('.htmlspecialchars(json_encode($row)).')">Edit</button> <button onclick="deletefun(\''.$row->id.'\')">Delete</button>';
                     })
                     ->rawColumns(['action'])
                     ->make(true);
@@ -52,7 +52,7 @@ class EmployeeController extends Controller
                 return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                        return '<button onclick="openform('.htmlspecialchars(json_encode($row)).')">Edit</button> <button onclick="deletefun('.$row->id.')">Delete</button>';
+                        return '<button onclick="openform('.htmlspecialchars(json_encode($row)).')">Edit</button> <button onclick="deletefun(\''.$row->id.'\')">Delete</button>';
                     })
                     ->addColumn('company_name',function($row){
                         return $row->company?$row->company->name:'Company not found';

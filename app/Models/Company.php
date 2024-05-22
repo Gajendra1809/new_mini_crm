@@ -2,14 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Company extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use HasUuids;
+
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     protected $table="companies";
 
@@ -26,6 +32,10 @@ class Company extends Model
         parent::boot();
         static::deleting(function($company) {
             $company->employee()->delete();
+        });
+
+        static::creating(function ($model) {
+            $model->id = Str::uuid();
         });
     }
 }
